@@ -4,16 +4,27 @@ import time
 import os
 import array as arr
 
-rowA=arr.array('u', ["_","_","_","_","_","_","_","_","_","_","_","_","_","_","_","_"]) 
-rowB=arr.array('u', ["_","_","_","_","_","_","_","_","_","_","_","_","_","_","_","_"]) 
+disp_col=20
+disp_row=4
 
-def print_display(row1, row2):
+rowA=arr.array('u', ["_","_","_","_","_","_","_","_","_","_","_","_","_","_","_","_","_","_","_","_"]) 
+rowB=arr.array('u', ["_","_","_","_","_","_","_","_","_","_","_","_","_","_","_","_","_","_","_","_"]) 
+rowC=arr.array('u', ["_","_","_","_","_","_","_","_","_","_","_","_","_","_","_","_","_","_","_","_"]) 
+rowD=arr.array('u', ["_","_","_","_","_","_","_","_","_","_","_","_","_","_","_","_","_","_","_","_"]) 
+
+def print_display(row1, row2, row3, row4):
     os.system("clear")
-    for i in range(0,16):
+    for i in range(disp_col):
         print(row1[i],end='')
     print("")
-    for i in range(0,16):
+    for i in range(disp_col):
         print(row2[i],end='')
+    print("")
+    for i in range(disp_col):
+        print(row3[i],end='')
+    print("")
+    for i in range(disp_col):
+        print(row4[i],end='')
     print("")
 
 ##########################################
@@ -25,19 +36,21 @@ while True:
     time.sleep(0.2)
 
     if c.isalpha(): 
-        rowB[x]=c
+        rowD[x]=c
     elif c.isdigit():
-        rowB[x]=c
+        rowD[x]=c
     else:
-        rowB[x]="~"
+        rowD[x]="~"
 
     x=x+1
 
-    if x>15: 
+    if x>(disp_col-1): 
         x=0
-        for i in range(0,16):
+        for i in range(disp_col):
             rowA[i]=rowB[i]
-            rowB[i]="_"
+            rowB[i]=rowC[i]
+            rowC[i]=rowD[i] 
+            rowD[i]="_"
 
-    print_display(rowA, rowB) 
+    print_display(rowA, rowB, rowC, rowD) 
 
