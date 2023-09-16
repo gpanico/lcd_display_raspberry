@@ -1,0 +1,1 @@
+minimodem 50 -M 2000 -S 1550 -i -5 --stopbits 1.5 -f 608.wav -q | ./read.py
