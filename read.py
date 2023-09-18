@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 import sys
-import time
+from time import sleep 
 import os
 import array as arr
 import I2C_LCD_driver
@@ -8,6 +8,8 @@ import I2C_LCD_driver
 disp_col=20
 disp_row=4
 #mylcd=I2C_LCD_driver.lcd()
+#mylcd.lcd_display_string("Hello I2C World!", 1)
+#sleep(1)
 
 rowA=arr.array('u', ["_","_","_","_","_","_","_","_","_","_","_","_","_","_","_","_","_","_","_","_"]) 
 rowB=arr.array('u', ["_","_","_","_","_","_","_","_","_","_","_","_","_","_","_","_","_","_","_","_"]) 
@@ -40,7 +42,7 @@ x=0
 while True:
     
     c=sys.stdin.read(1)
-    time.sleep(0.15)
+    sleep(0.15)
 
     if c.isalpha(): 
         rowD[x]=c
