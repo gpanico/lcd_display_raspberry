@@ -6,6 +6,14 @@ Do you have a short wave receiver and a 1$ USB sound dongle?
 
 Tune your short wave receiver on 10.100 MHz USB, and receive the weather forecast on the display! 
 
+## connection schema 
+
+    \|/  SWR antenna
+     |       +------------------+   audio    +---------------+   +--------------+      RTTY                     +------------------+
+     +-------| SDR/SWR receiver |----------->| USB soundcard |-->| raspberry PI |-->soundmodem ---> read.py --> | I2C 20x4 display |
+             +------------------+ out    mic +---------------+   +--------------+   (software)     (software)   +------------------+
+
+
 ## requirements
 
 1. raspberry PI, raspbian, I2c modules on
