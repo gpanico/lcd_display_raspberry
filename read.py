@@ -7,6 +7,7 @@ import I2C_LCD_driver
 
 disp_col=20
 disp_row=4
+fp=open("bulletin.txt","a")
 
 #mylcd=I2C_LCD_driver.lcd()
 #mylcd.lcd_display_string("Hello I2C World!", 1)
@@ -44,6 +45,7 @@ while True:
 
     c=sys.stdin.read(1)
     sleep(0.1)
+    print(c,file=fp,end='')
 
     if c.isprintable():
         rowD[x]=c
