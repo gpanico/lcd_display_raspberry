@@ -1,1 +1,8 @@
+#!/bin/bash
+
+# set radio mode and frequency
+#rigctl -m 124 -r /dev/ttyUSB0 M RTTYR 0
+#rigctl -m 124 -r /dev/ttyUSB0 F 10101150
+
+# start modem and display
 minimodem 50 -M 1015 -S 565 -i -5 --stopbits 1.5 -f ddk9.wav -q | ./read.py
