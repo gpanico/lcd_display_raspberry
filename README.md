@@ -10,7 +10,7 @@ Tune your short wave receiver on 10.100 MHz USB, and receive the weather forecas
 
     \|/  SWR antenna
      |       +------------------+   audio    +---------------+   +--------------+      RTTY                  +------------------+
-     +-------| SDR/SWR receiver |----------->| USB soundcard |-->| raspberry PI |-->soundmodem -->read.py -->| I2C 20x4 display |
+     +-------| SDR/SWR receiver |----------->| USB soundcard |-->| raspberry PI |--> minimodem -->read.py -->| I2C 20x4 display |
              +------------------+ out    mic +---------------+   +--------------+   (software)    (software) +------------------+
 
 
