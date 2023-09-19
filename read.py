@@ -20,19 +20,19 @@ rowD=arr.array('u', ["_","_","_","_","_","_","_","_","_","_","_","_","_","_","_"
 def print_display(row1, row2, row3, row4):
     system("clear")
     for i in range(disp_col):
-        print(row1[i],'',end='')
+        print(row1[i],end='')
         #mylcd.lcd_display_string(row1[i], 1, i)
     print("")
     for i in range(disp_col):
-        print(row2[i],'',end='')
+        print(row2[i],end='')
         #mylcd.lcd_display_string(row2[i], 2, i)
     print("")
     for i in range(disp_col):
-        print(row3[i],'',end='')
+        print(row3[i],end='')
         #mylcd.lcd_display_string(row3[i], 3, i)
     print("")
     for i in range(disp_col):
-        print(row4[i],'',end='')
+        print(row4[i],end='')
         #mylcd.lcd_display_string(row4[i], 4, i)
     print("")
 
@@ -43,12 +43,12 @@ x=0
 while True:
 
     c=sys.stdin.read(1)
-    sleep(0.15)
+    sleep(0.1)
 
-    if c.isalpha():
+    if c.isprintable():
         rowD[x]=c
-    elif c.isdigit():
-        rowD[x]=c
+    elif ord(c)==10:
+        x=disp_col
     else:
         rowD[x]="~"
 
