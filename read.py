@@ -2,69 +2,51 @@
 import sys
 from time import sleep
 from os import system
-import array as arr
 import I2C_LCD_driver
 
 disp_col=20
 disp_row=4
+
 fp=open("bulletin.txt","a")
 
 #mylcd=I2C_LCD_driver.lcd()
 #mylcd.lcd_display_string("Hello I2C World!", 1)
-#sleep(1)
 
-rowA=arr.array('u', ["_","_","_","_","_","_","_","_","_","_","_","_","_","_","_","_","_","_","_","_"])
-rowB=arr.array('u', ["_","_","_","_","_","_","_","_","_","_","_","_","_","_","_","_","_","_","_","_"])
-rowC=arr.array('u', ["_","_","_","_","_","_","_","_","_","_","_","_","_","_","_","_","_","_","_","_"])
-rowD=arr.array('u', ["_","_","_","_","_","_","_","_","_","_","_","_","_","_","_","_","_","_","_","_"])
+row = [ [ "_" for y in range(disp_row) ] for x in range(disp_col) ] 
 
-def print_display(row1, row2, row3, row4):
+def print_display(row):
     system("clear")
-    for i in range(disp_col):
-        print(row1[i],end='')
-        #mylcd.lcd_display_string(row1[i], 1, i)
-    print("")
-    for i in range(disp_col):
-        print(row2[i],end='')
-        #mylcd.lcd_display_string(row2[i], 2, i)
-    print("")
-    for i in range(disp_col):
-        print(row3[i],end='')
-        #mylcd.lcd_display_string(row3[i], 3, i)
-    print("")
-    for i in range(disp_col):
-        print(row4[i],end='')
-        #mylcd.lcd_display_string(row4[i], 4, i)
-    print("")
+    for j in range(disp_row):
+    	for i in range(disp_col):
+        	print(row[i][j],end='')
+        	#mylcd.lcd_display_string(row[i][j], j, i)
+    	print("")
 
 ##########################################
 
-print_display(rowA, rowB, rowC, rowD)
 x=0
 while True:
-
     c=sys.stdin.read(1)
     sleep(0.1)
     print(c,file=fp,end='')
 
     if c.isprintable():
-        rowD[x]=c
+        row[x][disp_row-1]=c
     elif ord(c)==10:
         x=disp_col
     else:
-        rowD[x]="~"
+        row[x][disp_row-1]="~"
 
     # print new char on the last line of display
-    # lcd_display_string(self, rowD[x], 4, x)
+    # mylcd.lcd_display_string(row[x][disp_row-1], disp_row-1, x)
 
     x=x+1
-    if x>(disp_col-1):
+    if x>=(disp_col):
         x=0
         for i in range(disp_col):
-            rowA[i]=rowB[i]
-            rowB[i]=rowC[i]
-            rowC[i]=rowD[i]
-            rowD[i]="_"
+            for k in (range(disp_row-1)): 
+                row[i][k]=row[i][k+1]
+            row[i][disp_row-1]="_"
 
-    print_display(rowA, rowB, rowC, rowD)
+    print_display(row)
 
