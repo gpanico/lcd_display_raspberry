@@ -12,7 +12,7 @@ fp=open("bulletin.txt","a")
 
 mylcd=I2C_LCD_driver.lcd()
 
-row = [ [ "_" for y in range(disp_row+1) ] for x in range(disp_col+1) ] 
+row = [ [ "`" for y in range(disp_row+1) ] for x in range(disp_col+1) ] 
 
 def print_display(row):
     system("clear")
@@ -24,19 +24,22 @@ def print_display(row):
 
 ##########################################
 
+print_display(row)
+
 x=0
 while True:
     c=sys.stdin.read(1)
-    sleep(0.2)
+    sleep(0.1)
     print(c,file=fp,end='')
 
     if c.isprintable():
         row[x][disp_row]=c
     elif ord(c)==10:
         x=disp_col
+        row[x][disp_row]=">"
     else:
         row[x][disp_row]="~"
-
+    
     # print new char on the last line of display
     mylcd.lcd_display_string(row[x][disp_row], disp_row, x)
 
@@ -46,6 +49,7 @@ while True:
         for i in range(disp_col):
             for k in (range(disp_row)): 
                 row[i][k]=row[i][k+1]
-            row[i][disp_row]=" "
+            row[i][disp_row]="_"
+
         print_display(row)
 
