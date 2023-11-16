@@ -28,7 +28,7 @@ x=0
 while True:
     c=sys.stdin.read(1)
     sleep(0.01)
-    print(c,file=fp,end='')
+    print(c,file=fp,end='',flush=True)
 
     if c.isprintable():
         row[x][disp_row]=c
@@ -49,5 +49,5 @@ while True:
             row[i][disp_row]=" "
 
         print_display(row)
-        sleep(1)
+        sleep(0.1)
 

@@ -5,4 +5,6 @@
 #rigctl -m 124 -r /dev/ttyUSB0 F 10101150
 
 # start modem and display
-minimodem 50 -M 1015 -S 565 -i -5 --stopbits 1.5 -f ddk9.wav -q | ./read.py
+# minimodem 50 -M 1015 -S 565 -i -5 --stopbits 1.5 -f ddk9.wav -q | ./read.py
+minimodem 50 -S 1555 -M 1105 -i -5 --stopbits 1.5 -q | ./read.py
+
